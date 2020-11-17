@@ -5,7 +5,7 @@ import './styles/main.css';
 const App = () => {
   return (
     <div>
-      <h1>HOLAAAAA</h1>
+      <h1>Repositorio de prueba, su contenido es nulo.</h1>
     </div>
   )
 }
