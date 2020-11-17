@@ -1,37 +1,13 @@
-import React, { useEffect } from 'react';
-import {
-  Switch,
-  Route
-} from 'react-router-dom';
-
+import React from 'react';
 import './styles/main.css';
 
 
-import Home from './pages/Home';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import ResetPassword from './pages/ResetPassword';
-
-function App() {
-
+const App = () => {
   return (
-    <>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/signin">
-          <SignIn />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/reset-password">
-          <ResetPassword />
-        </Route>
-      </Switch>
-    </>
-  );
+    <div>
+      <h1>HOLAAAAA</h1>
+    </div>
+  )
 }
 
-export default App;
+export default App
