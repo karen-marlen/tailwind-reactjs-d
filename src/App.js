@@ -1,30 +1,57 @@
-import HeroSectionContainer from './components/HeroSectionContainer';
+import React, { useEffect } from 'react';
+import {
+  Switch,
+  Route,
+  useLocation
+} from 'react-router-dom';
 
-import './styles/global.css';
+import './styles/main.css';
 
-import {Spring} from 'react-spring/renderprops';
-import CardsContainer from './components/CardsContainer';
-import Contact from './components/Contact';
-import Feature from './components/Feature';
+import AOS from 'aos';
+import { focusHandling } from 'cruip-js-toolkit';
+
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      disable: 'phone',
+      duration: 700,
+      easing: 'ease-out-cubic',
+    });
+  });
+
+  useEffect(() => {
+    document.querySelector('html').style.scrollBehavior = 'auto'
+    window.scroll({ top: 0 })
+    document.querySelector('html').style.scrollBehavior = ''
+    focusHandling('outline');
+  }, [location.pathname]); // triggered on route change
+
   return (
-    <div className="App">
-      <HeroSectionContainer />
-      <Spring 
-        from={{opacity:0}}
-        to={{opacity:1}}
-        config={{delay:2500, duration:2500}}
-      >
-        {(props)=>
-          <div style={props}>
-            <CardsContainer />
-            <Feature />
-            <Contact />          
-          </div>
-        }
-      </Spring>
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/signin">
+          <SignIn />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <Route path="/reset-password">
+          <ResetPassword />
+        </Route>
+      </Switch>
+    </>
   );
 }
 
